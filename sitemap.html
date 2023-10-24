@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=1.0, initial-scale=1.0">
-	<title>Cariolshop - Sitemap</title>
-  <meta name="description" content="Cariolshop sitemap biolink"/>
-    <meta
-      property="og:title"
-      content="Cariolshop - sitemap - biolink"
-    />
-    <meta
-      property="og:description"
-      content="Cariolshop sitemap biolink"
-    />
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cariolshop - Sitemap</title>
+    <meta name="description" content="Daftar isi sitemap situs cariolshop.com update terbaru">
+    <meta property="og:title" content="Daftar isi produk Cariolshop">
+    <meta property="og:description" content="Daftar isi sitemap situs cariolshop.com update terbaru">
+    <meta name="google-site-verification" content="mVw9eljKmI-j_RUhMXOChqQKFFSG_uYAan_aSioEG7c" />
+    <meta name="google-site-verification" content="4OC2tBl_CD5xhRVD29pkIEoCpj2RluaDGCQAUULlb7A" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&family=IBM+Plex+Sans:wght@500&display=swap"
-      rel="stylesheet"
-    />
-	<link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <header>
-      <h1>Cariolshop</h1>
-      <p><span class="headline"><a href="index.html">bio link</a></span> | sitemap</p>
+        <h1>Daftar isi Cariolshop</h1>
     </header>
     <main>
-      <section>
-        <div>
-          <script src="https://feeds.feedburner.com/cariolshop?format=sigpro" type="text/javascript" ></script>
-        </div>
-      </section>
-
+        <script async src="https://cse.google.com/cse.js?cx=a4ed67d1e0ab41245"></script>
+        <div class="gcse-search"></div>
+        <ul id="daftarIsi"></ul>
     </main>
-  </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const feedUrl = 'https://api.allorigins.win/raw?url=https://feeds.feedburner.com/cariolshop';
+                const response = await fetch(feedUrl);
+                const text = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(text, 'text/xml');
+                const items = xmlDoc.querySelectorAll('item');
+
+                items.forEach(item => {
+                    const title = item.querySelector('title').textContent;
+                    const link = item.querySelector('link').textContent;
+                    const listItem = document.createElement('li');
+                    const anchor = document.createElement('a');
+                    anchor.href = link;
+                    anchor.textContent = title;
+                    listItem.appendChild(anchor);
+                    document.getElementById('daftarIsi').appendChild(listItem);
+                });
+            } catch (error) {
+                const errorMessage = document.createElement('li');
+                errorMessage.textContent = 'Terjadi kesalahan saat mengambil feed.';
+                document.getElementById('daftarIsi').appendChild(errorMessage);
+            }
+        });
+    </script>
+</body>
 </html>
