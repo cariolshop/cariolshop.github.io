@@ -136,3 +136,4 @@ section div article h2 {
   font-family: var(--font-secondary);
 }
 .headline a{color: #da0175 !important;}
+.gsc-adBlock{display:none !important;}
