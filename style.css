@@ -51,14 +51,14 @@ input {
   border: 0;
 }
 body {
-  padding: 6rem 3.2rem;
+  padding: 10px;
   color: var(--font-color-1);
   background-color: var(--bg-color);
   font-family: var(--font-main);
 }
 html {
   scroll-behavior: smooth;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
 }
@@ -79,7 +79,7 @@ header {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 4.8rem;
+  margin-bottom: 10px;
 }
 header img {
   height: 125px;
