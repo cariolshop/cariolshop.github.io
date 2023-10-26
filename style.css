@@ -96,6 +96,8 @@ header p {
   color: var(--color-grey);
 }
 
+ul > li {padding: 10px 0;border-bottom: 1px dashed white;}
+
 /*Cards*/
 section div {
   display: flex;
