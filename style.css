@@ -29,6 +29,9 @@ ol {
 a {
   text-decoration: none;
 }
+
+a:hover {color:#4d90fe}
+
 img {
   max-width: 100%;
   height: auto;
@@ -96,7 +99,7 @@ header p {
   color: var(--color-grey);
 }
 
-ul > li {padding: 10px 0;border-bottom: 1px dashed white;}
+ul > li {padding: 10px 0;border-bottom: 1px dashed white;color:white;}
 
 /*Cards*/
 section div {
