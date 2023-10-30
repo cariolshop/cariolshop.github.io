@@ -26,34 +26,39 @@
         </p>
         <script async src="https://cse.google.com/cse.js?cx=a4ed67d1e0ab41245"></script>
         <div class="gcse-search"></div>
-        <ul id="daftarIsi"></ul>
+        <ul id="daftarIsi"><li id="loadingMessage">Tunggu Sebentar...</li></ul>
     </main>
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
-            try {
-                const feedUrl = 'https://api.allorigins.win/raw?url=https://feeds.feedburner.com/cariolshop';
-                const response = await fetch(feedUrl);
-                const text = await response.text();
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(text, 'text/xml');
-                const items = xmlDoc.querySelectorAll('item');
+    document.addEventListener('DOMContentLoaded', async function() {
+        try {
+            const feedUrl = 'https://api.allorigins.win/raw?url=https://feeds.feedburner.com/cariolshop';
+            document.getElementById('loadingMessage').textContent = 'Sedang mengambil feed...';
+            
+            const response = await fetch(feedUrl);
+            const text = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(text, 'text/xml');
+            const items = xmlDoc.querySelectorAll('item');
 
-                items.forEach(item => {
-                    const title = item.querySelector('title').textContent;
-                    const link = item.querySelector('link').textContent;
-                    const listItem = document.createElement('li');
-                    const anchor = document.createElement('a');
-                    anchor.href = link;
-                    anchor.textContent = title;
-                    listItem.appendChild(anchor);
-                    document.getElementById('daftarIsi').appendChild(listItem);
-                });
-            } catch (error) {
-                const errorMessage = document.createElement('li');
-                errorMessage.textContent = 'Terjadi kesalahan saat mengambil feed.';
-                document.getElementById('daftarIsi').appendChild(errorMessage);
-            }
-        });
-    </script>
+            items.forEach(item => {
+                const title = item.querySelector('title').textContent;
+                const link = item.querySelector('link').textContent;
+                const listItem = document.createElement('li');
+                const anchor = document.createElement('a');
+                anchor.href = link;
+                anchor.textContent = title;
+                listItem.appendChild(anchor);
+                document.getElementById('daftarIsi').appendChild(listItem);
+            });
+
+            document.getElementById('loadingMessage').style.display = 'none';
+        } catch (error) {
+            const errorMessage = document.createElement('li');
+            errorMessage.textContent = 'Terjadi kesalahan saat mengambil feed.';
+            document.getElementById('daftarIsi').appendChild(errorMessage);
+            document.getElementById('loadingMessage').style.display = 'none';
+        }
+    });
+</script>
 </body>
 </html>
